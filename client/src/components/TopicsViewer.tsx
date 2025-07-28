@@ -242,10 +242,7 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
                 </div>
                 <div className="text-emerald-600 dark:text-emerald-400">Verses Covered</div>
               </div>
-              <div className="text-center">
-                <div className="font-bold text-emerald-700 dark:text-emerald-300">{filteredTopics.length}</div>
-                <div className="text-emerald-600 dark:text-emerald-400">Showing</div>
-              </div>
+              
             </div>
           </div>
           

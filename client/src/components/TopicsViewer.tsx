@@ -217,17 +217,6 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-gray-900 dark:to-gray-800 p-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
-          <Button
-            onClick={onBack}
-            variant="ghost"
-            size="sm"
-            className="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Dashboard
-          </Button>
-        </div>
 
         {/* Title and Search */}
         <div className="text-center mb-8">

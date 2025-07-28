@@ -5,9 +5,10 @@ import { JuzCard } from './JuzCard';
 import { TabNavigation } from './TabNavigation';
 import { TabType } from '@/types';
 import { Settings, Church, BookOpen } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Button } from './ui/button';
+import { TopicsViewer } from './TopicsViewer';
 
 interface Juz {
   number: number;
@@ -41,8 +42,9 @@ export function Dashboard({ onNavigate }: DashboardProps) {
   const [juzError, setJuzError] = useState<string | null>(null);
 
   console.log(filteredSurahs);
-  
+
   const [activeTab, setActiveTab] = useState<TabType>('surah');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'surah' | 'juz' | 'topics' | 'settings'>('dashboard');
 
   // Load Juz data
   useEffect(() => {
@@ -81,6 +83,10 @@ export function Dashboard({ onNavigate }: DashboardProps) {
     setSelectedTopic(topic === 'all' ? null : topic);
   };
 
+  const handleTopicsView = () => {
+    setCurrentView('topics');
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -101,6 +107,14 @@ export function Dashboard({ onNavigate }: DashboardProps) {
         </div>
       </div>
     );
+  }
+
+  if (currentView === 'settings') {
+    return <Settings onBack={() => setCurrentView('dashboard')} />;
+  }
+
+  if (currentView === 'topics') {
+    return <TopicsViewer onBack={() => setCurrentView('dashboard')} />;
   }
 
   return (
@@ -223,7 +237,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                 </p>
               </div>
             )}
-            
+
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {filteredSurahs.map((surah) => (
                 <SurahCard 
@@ -260,7 +274,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                     The Quran is divided into 30 sections called Paras or Juz, each containing multiple Surahs or parts of Surahs.
                   </p>
                 </div>
-                
+
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {juzList.map((juz) => (
                     <JuzCard 
@@ -276,46 +290,38 @@ export function Dashboard({ onNavigate }: DashboardProps) {
         )}
 
         {activeTab === 'topics' && (
-          <>
-            {juzLoading ? (
-              <div className="flex items-center justify-center py-12">
-                <div className="text-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
-                  <p className="text-gray-600 dark:text-gray-400">Loading Paras...</p>
-                </div>
-              </div>
-            ) : juzError ? (
-              <div className="text-center py-12">
-                <p className="text-red-600 dark:text-red-400 mb-4">Error: {juzError}</p>
-                <p className="text-gray-600 dark:text-gray-400">Please check your internet connection and try again.</p>
-              </div>
-            ) : (
-              <>
-                <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-                  <h3 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
-                    Quran Paras (Juz)
-                  </h3>
-                  <p className="text-sm text-blue-700 dark:text-blue-300">
-                    The Quran is divided into 30 sections called Paras or Juz, each containing multiple Surahs or parts of Surahs.
-                  </p>
-                </div>
+          <div className="space-y-6">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                Explore Quranic Topics
+              </h2>
+              <p className="text-gray-600 dark:text-gray-400 mb-6">
+                Discover verses organized by important Islamic themes
+              </p>
+              <Button
+                onClick={handleTopicsView}
+                className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-8 py-3 rounded-lg font-medium transition-all duration-200"
+              >
+                <BookOpen className="w-5 h-5 mr-2" />
+                Explore Topics
+              </Button>
+            </div>
 
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  {juzList.map((juz) => (
-                    <JuzCard 
-                      key={juz.number} 
-                      juz={juz} 
-                      onClick={() => handleJuzClick(juz)}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-          </>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+              {['Faith (Iman)', 'Prayer (Salah)', 'Charity (Zakat)', 'Patience (Sabr)', 'Forgiveness', 'Knowledge (Ilm)'].map((topic) => (
+                <Card key={topic} className="p-4 hover:shadow-md transition-shadow cursor-pointer" onClick={handleTopicsView}>
+                  <div className="text-center">
+                    <BookOpen className="w-8 h-8 text-emerald-600 mx-auto mb-2" />
+                    <h3 className="font-medium text-gray-900 dark:text-white">{topic}</h3>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
         )}
-        
 
-        {activeTab !== 'surah' && activeTab !== 'para' && (
+
+        {activeTab !== 'surah' && activeTab !== 'para' && activeTab !== 'topics' && (
           <div className="text-center py-12">
             <div className="text-gray-400 dark:text-gray-600 mb-4">
               <BookOpen className="w-16 h-16 mx-auto mb-4" />

@@ -1,3 +1,4 @@
+
 {
   "topics": [
     {
@@ -16,12 +17,18 @@
           "ayah": 15,
           "text": "قُلْ أَؤُنَبِّئُكُم بِخَيْرٍ مِّن ذَٰلِكُمْ ۚ لِلَّذِينَ اتَّقَوْا عِندَ رَبِّهِمْ جَنَّاتٌ تَجْرِي مِن تَحْتِهَا الْأَنْهَارُ",
           "translation": "Say, 'Shall I inform you of [something] better than that? For those who feared Allah will be gardens in the presence of their Lord beneath which rivers flow.'"
+        },
+        {
+          "surah": 47,
+          "ayah": 15,
+          "text": "مَّثَلُ الْجَنَّةِ الَّتِي وُعِدَ الْمُتَّقُونَ ۖ فِيهَا أَنْهَارٌ مِّن مَّاءٍ غَيْرِ آسِنٍ",
+          "translation": "Is the description of Paradise, which the righteous are promised, wherein are rivers of water unaltered."
         }
       ]
     },
     {
       "id": "forgiveness",
-      "name": "Forgiveness",
+      "name": "Forgiveness (Maghfira)",
       "description": "Verses about Allah's mercy, forgiveness, and repentance.",
       "ayahs": [
         {
@@ -35,12 +42,18 @@
           "ayah": 135,
           "text": "وَالَّذِينَ إِذَا فَعَلُوا فَاحِشَةً أَوْ ظَلَمُوا أَنفُسَهُمْ ذَكَرُوا اللَّهَ فَاسْتَغْفَرُوا لِذُنُوبِهِمْ",
           "translation": "And those who, when they commit an immorality or wrong themselves [by transgression], remember Allah and seek forgiveness for their sins."
+        },
+        {
+          "surah": 39,
+          "ayah": 53,
+          "text": "قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ",
+          "translation": "Say, 'O My servants who have transgressed against themselves [by sinning], do not despair of the mercy of Allah.'"
         }
       ]
     },
     {
       "id": "patience",
-      "name": "Patience",
+      "name": "Patience (Sabr)",
       "description": "Verses about patience, perseverance, and trusting in Allah's plan.",
       "ayahs": [
         {
@@ -54,12 +67,18 @@
           "ayah": 155,
           "text": "وَلَنَبْلُوَنَّكُم بِشَيْءٍ مِّنَ الْخَوْفِ وَالْجُوعِ وَنَقْصٍ مِّنَ الْأَمْوَالِ وَالْأَنفُسِ وَالثَّمَرَاتِ",
           "translation": "And We will surely test you with something of fear and hunger and a loss of wealth and lives and fruits."
+        },
+        {
+          "surah": 3,
+          "ayah": 200,
+          "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا اصْبِرُوا وَصَابِرُوا وَرَابِطُوا وَاتَّقُوا اللَّهَ",
+          "translation": "O you who have believed, persevere and endure and remain stationed and fear Allah."
         }
       ]
     },
     {
       "id": "prayer",
-      "name": "Prayer",
+      "name": "Prayer (Salah)",
       "description": "Verses about the importance of prayer and worship.",
       "ayahs": [
         {
@@ -73,12 +92,18 @@
           "ayah": 3,
           "text": "الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ وَيُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنفِقُونَ",
           "translation": "Who believe in the unseen, establish prayer, and spend out of what We have provided for them."
+        },
+        {
+          "surah": 20,
+          "ayah": 14,
+          "text": "إِنَّنِي أَنَا اللَّهُ لَا إِلَٰهَ إِلَّا أَنَا فَاعْبُدْنِي وَأَقِمِ الصَّلَاةَ لِذِكْرِي",
+          "translation": "Indeed, I am Allah. There is no deity except Me, so worship Me and establish prayer for My remembrance."
         }
       ]
     },
     {
       "id": "charity",
-      "name": "Charity",
+      "name": "Charity (Zakat)",
       "description": "Verses about charity, helping others, and spending in the way of Allah.",
       "ayahs": [
         {
@@ -92,6 +117,187 @@
           "ayah": 267,
           "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا أَنفِقُوا مِن طَيِّبَاتِ مَا كَسَبْتُمْ",
           "translation": "O you who have believed, spend from the good things which you have earned."
+        },
+        {
+          "surah": 9,
+          "ayah": 103,
+          "text": "خُذْ مِنْ أَمْوَالِهِمْ صَدَقَةً تُطَهِّرُهُمْ وَتُزَكِّيهِم بِهَا",
+          "translation": "Take, [O Muhammad], from their wealth a charity by which you purify them and cause them increase."
+        }
+      ]
+    },
+    {
+      "id": "faith",
+      "name": "Faith (Iman)",
+      "description": "Verses about belief, faith, and trust in Allah.",
+      "ayahs": [
+        {
+          "surah": 2,
+          "ayah": 2,
+          "text": "ذَٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ هُدًى لِّلْمُتَّقِينَ",
+          "translation": "This is the Book about which there is no doubt, a guidance for those conscious of Allah."
+        },
+        {
+          "surah": 2,
+          "ayah": 4,
+          "text": "وَالَّذِينَ يُؤْمِنُونَ بِمَا أُنزِلَ إِلَيْكَ وَمَا أُنزِلَ مِن قَبْلِكَ",
+          "translation": "And who believe in what has been revealed to you, [O Muhammad], and what was revealed before you."
+        },
+        {
+          "surah": 4,
+          "ayah": 136,
+          "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا آمِنُوا بِاللَّهِ وَرَسُولِهِ",
+          "translation": "O you who have believed, believe in Allah and His Messenger."
+        }
+      ]
+    },
+    {
+      "id": "knowledge",
+      "name": "Knowledge (Ilm)",
+      "description": "Verses about seeking knowledge and wisdom.",
+      "ayahs": [
+        {
+          "surah": 96,
+          "ayah": 1,
+          "text": "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ",
+          "translation": "Read in the name of your Lord who created."
+        },
+        {
+          "surah": 20,
+          "ayah": 114,
+          "text": "وَقُل رَّبِّ زِدْنِي عِلْمًا",
+          "translation": "And say, 'My Lord, increase me in knowledge.'"
+        },
+        {
+          "surah": 39,
+          "ayah": 9,
+          "text": "قُلْ هَلْ يَسْتَوِي الَّذِينَ يَعْلَمُونَ وَالَّذِينَ لَا يَعْلَمُونَ",
+          "translation": "Say, 'Are those who know equal to those who do not know?'"
+        }
+      ]
+    },
+    {
+      "id": "justice",
+      "name": "Justice (Adl)",
+      "description": "Verses about justice, fairness, and standing for truth.",
+      "ayahs": [
+        {
+          "surah": 4,
+          "ayah": 135,
+          "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا كُونُوا قَوَّامِينَ بِالْقِسْطِ شُهَدَاءَ لِلَّهِ",
+          "translation": "O you who have believed, be persistently standing firm in justice, witnesses for Allah."
+        },
+        {
+          "surah": 5,
+          "ayah": 8,
+          "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا كُونُوا قَوَّامِينَ لِلَّهِ شُهَدَاءَ بِالْقِسْطِ",
+          "translation": "O you who have believed, be persistently standing firm for Allah, witnesses in justice."
+        },
+        {
+          "surah": 16,
+          "ayah": 90,
+          "text": "إِنَّ اللَّهَ يَأْمُرُ بِالْعَدْلِ وَالْإِحْسَانِ",
+          "translation": "Indeed, Allah orders justice and good conduct."
+        }
+      ]
+    },
+    {
+      "id": "family",
+      "name": "Family & Parents",
+      "description": "Verses about family relations, respect for parents, and family values.",
+      "ayahs": [
+        {
+          "surah": 17,
+          "ayah": 23,
+          "text": "وَقَضَىٰ رَبُّكَ أَلَّا تَعْبُدُوا إِلَّا إِيَّاهُ وَبِالْوَالِدَيْنِ إِحْسَانًا",
+          "translation": "And your Lord has decreed that you not worship except Him, and to parents, good treatment."
+        },
+        {
+          "surah": 46,
+          "ayah": 15,
+          "text": "وَوَصَّيْنَا الْإِنسَانَ بِوَالِدَيْهِ إِحْسَانًا",
+          "translation": "And We have enjoined upon man, to his parents, good treatment."
+        },
+        {
+          "surah": 31,
+          "ayah": 14,
+          "text": "وَوَصَّيْنَا الْإِنسَانَ بِوَالِدَيْهِ حَمَلَتْهُ أُمُّهُ وَهْنًا عَلَىٰ وَهْنٍ",
+          "translation": "And We have enjoined upon man [care] for his parents. His mother carried him, [increasing her] in weakness upon weakness."
+        }
+      ]
+    },
+    {
+      "id": "guidance",
+      "name": "Guidance (Hidayah)",
+      "description": "Verses about divine guidance and the straight path.",
+      "ayahs": [
+        {
+          "surah": 1,
+          "ayah": 6,
+          "text": "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ",
+          "translation": "Guide us to the straight path."
+        },
+        {
+          "surah": 2,
+          "ayah": 185,
+          "text": "شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ هُدًى لِّلنَّاسِ",
+          "translation": "The month of Ramadhan [is that] in which was revealed the Qur'an, a guidance for the people."
+        },
+        {
+          "surah": 17,
+          "ayah": 9,
+          "text": "إِنَّ هَٰذَا الْقُرْآنَ يَهْدِي لِلَّتِي هِيَ أَقْوَمُ",
+          "translation": "Indeed, this Qur'an guides to that which is most suitable."
+        }
+      ]
+    },
+    {
+      "id": "creation",
+      "name": "Creation of Universe",
+      "description": "Verses about the creation of heavens, earth, and all living beings.",
+      "ayahs": [
+        {
+          "surah": 21,
+          "ayah": 30,
+          "text": "وَجَعَلْنَا مِنَ الْمَاءِ كُلَّ شَيْءٍ حَيٍّ",
+          "translation": "And We made from water every living thing."
+        },
+        {
+          "surah": 51,
+          "ayah": 47,
+          "text": "وَالسَّمَاءَ بَنَيْنَاهَا بِأَيْدٍ وَإِنَّا لَمُوسِعُونَ",
+          "translation": "And the heaven We constructed with strength, and indeed, We are [its] expander."
+        },
+        {
+          "surah": 2,
+          "ayah": 164,
+          "text": "إِنَّ فِي خَلْقِ السَّمَاوَاتِ وَالْأَرْضِ وَاخْتِلَافِ اللَّيْلِ وَالنَّهَارِ",
+          "translation": "Indeed, in the creation of the heavens and earth, and the alternation of the night and the day."
+        }
+      ]
+    },
+    {
+      "id": "death",
+      "name": "Death & Afterlife",
+      "description": "Verses about death, the Day of Judgment, and the afterlife.",
+      "ayahs": [
+        {
+          "surah": 3,
+          "ayah": 185,
+          "text": "كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ",
+          "translation": "Every soul will taste death."
+        },
+        {
+          "surah": 67,
+          "ayah": 2,
+          "text": "الَّذِي خَلَقَ الْمَوْتَ وَالْحَيَاةَ لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًا",
+          "translation": "[He] who created death and life to test you [as to] which of you is best in deed."
+        },
+        {
+          "surah": 99,
+          "ayah": 7,
+          "text": "فَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ خَيْرًا يَرَهُ",
+          "translation": "So whoever does an atom's weight of good will see it."
         }
       ]
     }

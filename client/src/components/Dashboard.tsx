@@ -4,7 +4,7 @@ import { SurahCard } from './SurahCard';
 import { JuzCard } from './JuzCard';
 import { TabNavigation } from './TabNavigation';
 import { TabType } from '@/types';
-import { Settings, Church, BookOpen } from 'lucide-react';
+import { Settings, Church, BookOpen, Heart } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
@@ -125,7 +125,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
   }
 
   if (currentView === 'settings') {
-    return <Settings onBack={() => setCurrentView('dashboard')} />;
+    return <Settings />;
   }
 
   if (currentView === 'topics') {

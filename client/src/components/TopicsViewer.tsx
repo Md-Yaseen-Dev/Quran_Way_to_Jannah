@@ -43,6 +43,7 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
   const [translations, setTranslations] = useState<{ [key: string]: string }>({});
   const [surahs, setSurahs] = useState<SurahData[]>([]);
   const [translationFilter, setTranslationFilter] = useState<string>('all');
+  const [arabicText, setArabicText] = useState<{ [key: string]: Array<{ number: number; arabic: string }> }>({});
 
   useEffect(() => {
     loadData();
@@ -61,6 +62,11 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
       const surahResponse = await fetch('/data/quran.json');
       const surahData = await surahResponse.json();
       setSurahs(surahData.surahs);
+
+      // Load Arabic text
+      const arabicResponse = await fetch('/data/arabic-text.json');
+      const arabicData = await arabicResponse.json();
+      setArabicText(arabicData);
 
       // Load translations based on language preference and translation filter
       let translationFile = getTranslationFile(preferences.language);
@@ -110,6 +116,17 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
       return surahTranslations[ayahNumber.toString()];
     }
     return "Translation not available";
+  };
+
+  const getCompleteArabicText = (surahNumber: number, ayahNumber: number): string => {
+    const surahArabic = arabicText[surahNumber.toString()];
+    if (surahArabic) {
+      const ayah = surahArabic.find(a => a.number === ayahNumber);
+      if (ayah) {
+        return ayah.arabic;
+      }
+    }
+    return "Arabic text not available";
   };
 
   const filteredTopics = topics.filter(topic => {
@@ -197,7 +214,7 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
                   {/* Arabic Text */}
                   <div className="mb-6 p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-xl border border-gray-200 dark:border-gray-600" dir="rtl">
                     <div className="text-2xl leading-loose text-gray-900 dark:text-white font-arabic">
-                      {ayah.text}
+                      {getCompleteArabicText(ayah.surah, ayah.ayah)}
                       <span className="inline-flex items-center justify-center w-8 h-8 mr-4 ml-2 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white rounded-full text-sm font-bold shadow-lg">
                         {ayah.ayah}
                       </span>

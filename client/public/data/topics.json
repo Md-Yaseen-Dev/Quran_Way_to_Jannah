@@ -2,6 +2,62 @@
 {
   "topics": [
     {
+      "id": "allah",
+      "name": "Allah (God)",
+      "description": "Verses about Allah's attributes, names, and divine nature.",
+      "ayahs": [
+        {
+          "surah": 1,
+          "ayah": 1,
+          "text": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+          "translation": "In the name of Allah, the Entirely Merciful, the Especially Merciful."
+        },
+        {
+          "surah": 2,
+          "ayah": 255,
+          "text": "اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",
+          "translation": "Allah - there is no deity except Him, the Ever-Living, the Sustainer of existence."
+        },
+        {
+          "surah": 112,
+          "ayah": 1,
+          "text": "قُلْ هُوَ اللَّهُ أَحَدٌ",
+          "translation": "Say, He is Allah, [who is] One."
+        },
+        {
+          "surah": 59,
+          "ayah": 22,
+          "text": "هُوَ اللَّهُ الَّذِي لَا إِلَٰهَ إِلَّا هُوَ عَالِمُ الْغَيْبِ وَالشَّهَادَةِ",
+          "translation": "He is Allah, other than whom there is no deity, Knower of the unseen and the witnessed."
+        }
+      ]
+    },
+    {
+      "id": "prophet-muhammad",
+      "name": "Prophet Muhammad (PBUH)",
+      "description": "Verses about Prophet Muhammad, his character, and mission.",
+      "ayahs": [
+        {
+          "surah": 33,
+          "ayah": 21,
+          "text": "لَّقَدْ كَانَ لَكُمْ فِي رَسُولِ اللَّهِ أُسْوَةٌ حَسَنَةٌ",
+          "translation": "There has certainly been for you in the Messenger of Allah an excellent pattern."
+        },
+        {
+          "surah": 68,
+          "ayah": 4,
+          "text": "وَإِنَّكَ لَعَلَىٰ خُلُقٍ عَظِيمٍ",
+          "translation": "And indeed, you are of a great moral character."
+        },
+        {
+          "surah": 3,
+          "ayah": 144,
+          "text": "وَمَا مُحَمَّدٌ إِلَّا رَسُولٌ قَدْ خَلَتْ مِن قَبْلِهِ الرُّسُلُ",
+          "translation": "Muhammad is not but a messenger. [Other] messengers have passed on before him."
+        }
+      ]
+    },
+    {
       "id": "jannah",
       "name": "Jannah (Paradise)",
       "description": "Verses about Paradise, its blessings, and the rewards for the righteous.",
@@ -23,6 +79,43 @@
           "ayah": 15,
           "text": "مَّثَلُ الْجَنَّةِ الَّتِي وُعِدَ الْمُتَّقُونَ ۖ فِيهَا أَنْهَارٌ مِّن مَّاءٍ غَيْرِ آسِنٍ",
           "translation": "Is the description of Paradise, which the righteous are promised, wherein are rivers of water unaltered."
+        },
+        {
+          "surah": 55,
+          "ayah": 46,
+          "text": "وَلِمَنْ خَافَ مَقَامَ رَبِّهِ جَنَّتَانِ",
+          "translation": "But for he who has feared the position of his Lord are two gardens."
+        },
+        {
+          "surah": 76,
+          "ayah": 12,
+          "text": "وَجَزَاهُم بِمَا صَبَرُوا جَنَّةً وَحَرِيرًا",
+          "translation": "And will reward them for what they patiently endured [with] a garden and silk."
+        }
+      ]
+    },
+    {
+      "id": "jahannam",
+      "name": "Jahannam (Hell)",
+      "description": "Verses about Hell, punishment, and consequences of disbelief.",
+      "ayahs": [
+        {
+          "surah": 2,
+          "ayah": 24,
+          "text": "فَإِن لَّمْ تَفْعَلُوا وَلَن تَفْعَلُوا فَاتَّقُوا النَّارَ الَّتِي وَقُودُهَا النَّاسُ وَالْحِجَارَةُ",
+          "translation": "But if you do not - and you will never be able to - then fear the Fire, whose fuel is men and stones."
+        },
+        {
+          "surah": 4,
+          "ayah": 56,
+          "text": "إِنَّ الَّذِينَ كَفَرُوا بِآيَاتِنَا سَوْفَ نُصْلِيهِمْ نَارًا",
+          "translation": "Indeed, those who disbelieve in Our verses - We will drive them into a Fire."
+        },
+        {
+          "surah": 67,
+          "ayah": 7,
+          "text": "إِذَا أُلْقُوا فِيهَا سَمِعُوا لَهَا شَهِيقًا وَهِيَ تَفُورُ",
+          "translation": "When they are thrown into it, they hear from it a [dreadful] inhaling while it boils up."
         }
       ]
     },
@@ -48,6 +141,12 @@
           "ayah": 53,
           "text": "قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ",
           "translation": "Say, 'O My servants who have transgressed against themselves [by sinning], do not despair of the mercy of Allah.'"
+        },
+        {
+          "surah": 25,
+          "ayah": 70,
+          "text": "إِلَّا مَن تَابَ وَآمَنَ وَعَمِلَ عَمَلًا صَالِحًا",
+          "translation": "Except for those who repent, believe and do righteous work."
         }
       ]
     },
@@ -73,6 +172,12 @@
           "ayah": 200,
           "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا اصْبِرُوا وَصَابِرُوا وَرَابِطُوا وَاتَّقُوا اللَّهَ",
           "translation": "O you who have believed, persevere and endure and remain stationed and fear Allah."
+        },
+        {
+          "surah": 11,
+          "ayah": 11,
+          "text": "إِلَّا الَّذِينَ صَبَرُوا وَعَمِلُوا الصَّالِحَاتِ",
+          "translation": "Except for those who are patient and do righteous deeds."
         }
       ]
     },
@@ -98,6 +203,12 @@
           "ayah": 14,
           "text": "إِنَّنِي أَنَا اللَّهُ لَا إِلَٰهَ إِلَّا أَنَا فَاعْبُدْنِي وَأَقِمِ الصَّلَاةَ لِذِكْرِي",
           "translation": "Indeed, I am Allah. There is no deity except Me, so worship Me and establish prayer for My remembrance."
+        },
+        {
+          "surah": 29,
+          "ayah": 45,
+          "text": "إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ",
+          "translation": "Indeed, prayer prohibits immorality and wrongdoing."
         }
       ]
     },
@@ -123,6 +234,12 @@
           "ayah": 103,
           "text": "خُذْ مِنْ أَمْوَالِهِمْ صَدَقَةً تُطَهِّرُهُمْ وَتُزَكِّيهِم بِهَا",
           "translation": "Take, [O Muhammad], from their wealth a charity by which you purify them and cause them increase."
+        },
+        {
+          "surah": 57,
+          "ayah": 18,
+          "text": "إِنَّ الْمُصَّدِّقِينَ وَالْمُصَّدِّقَاتِ وَأَقْرَضُوا اللَّهَ قَرْضًا حَسَنًا",
+          "translation": "Indeed, the men who practice charity and the women who practice charity and [they who] have loaned Allah a goodly loan."
         }
       ]
     },
@@ -148,6 +265,12 @@
           "ayah": 136,
           "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا آمِنُوا بِاللَّهِ وَرَسُولِهِ",
           "translation": "O you who have believed, believe in Allah and His Messenger."
+        },
+        {
+          "surah": 49,
+          "ayah": 15,
+          "text": "إِنَّمَا الْمُؤْمِنُونَ الَّذِينَ آمَنُوا بِاللَّهِ وَرَسُولِهِ ثُمَّ لَمْ يَرْتَابُوا",
+          "translation": "The believers are only the ones who have believed in Allah and His Messenger and then doubt not."
         }
       ]
     },
@@ -173,6 +296,12 @@
           "ayah": 9,
           "text": "قُلْ هَلْ يَسْتَوِي الَّذِينَ يَعْلَمُونَ وَالَّذِينَ لَا يَعْلَمُونَ",
           "translation": "Say, 'Are those who know equal to those who do not know?'"
+        },
+        {
+          "surah": 58,
+          "ayah": 11,
+          "text": "يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا مِنكُمْ وَالَّذِينَ أُوتُوا الْعِلْمَ دَرَجَاتٍ",
+          "translation": "Allah will raise those who have believed among you and those who were given knowledge, by degrees."
         }
       ]
     },
@@ -298,6 +427,206 @@
           "ayah": 7,
           "text": "فَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ خَيْرًا يَرَهُ",
           "translation": "So whoever does an atom's weight of good will see it."
+        }
+      ]
+    },
+    {
+      "id": "marriage",
+      "name": "Marriage (Nikah)",
+      "description": "Verses about marriage, relationships, and family life.",
+      "ayahs": [
+        {
+          "surah": 30,
+          "ayah": 21,
+          "text": "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا",
+          "translation": "And of His signs is that He created for you from yourselves mates that you may find tranquillity in them."
+        },
+        {
+          "surah": 2,
+          "ayah": 187,
+          "text": "هُنَّ لِبَاسٌ لَّكُمْ وَأَنتُمْ لِبَاسٌ لَّهُنَّ",
+          "translation": "They are clothing for you and you are clothing for them."
+        },
+        {
+          "surah": 4,
+          "ayah": 19,
+          "text": "وَعَاشِرُوهُنَّ بِالْمَعْرُوفِ",
+          "translation": "And live with them in kindness."
+        }
+      ]
+    },
+    {
+      "id": "jihad",
+      "name": "Jihad (Struggle)",
+      "description": "Verses about striving in the path of Allah and righteous struggle.",
+      "ayahs": [
+        {
+          "surah": 29,
+          "ayah": 69,
+          "text": "وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا",
+          "translation": "And those who strive for Us - We will surely guide them to Our ways."
+        },
+        {
+          "surah": 25,
+          "ayah": 52,
+          "text": "فَلَا تُطِعِ الْكَافِرِينَ وَجَاهِدْهُم بِهِ جِهَادًا كَبِيرًا",
+          "translation": "So do not obey the disbelievers, and strive against them with the Qur'an a great striving."
+        },
+        {
+          "surah": 22,
+          "ayah": 78,
+          "text": "وَجَاهِدُوا فِي اللَّهِ حَقَّ جِهَادِهِ",
+          "translation": "And strive for Allah with the striving due to Him."
+        }
+      ]
+    },
+    {
+      "id": "angels",
+      "name": "Angels (Malaika)",
+      "description": "Verses about angels, their roles, and their worship of Allah.",
+      "ayahs": [
+        {
+          "surah": 2,
+          "ayah": 30,
+          "text": "وَإِذْ قَالَ رَبُّكَ لِلْمَلَائِكَةِ إِنِّي جَاعِلٌ فِي الْأَرْضِ خَلِيفَةً",
+          "translation": "And [mention, O Muhammad], when your Lord said to the angels, 'Indeed, I will make upon the earth a successive authority.'"
+        },
+        {
+          "surah": 35,
+          "ayah": 1,
+          "text": "الْحَمْدُ لِلَّهِ فَاطِرِ السَّمَاوَاتِ وَالْأَرْضِ جَاعِلِ الْمَلَائِكَةِ رُسُلًا",
+          "translation": "[All] praise is [due] to Allah, Creator of the heavens and the earth, [who] made the angels messengers."
+        },
+        {
+          "surah": 21,
+          "ayah": 20,
+          "text": "يُسَبِّحُونَ اللَّيْلَ وَالنَّهَارَ لَا يَفْتُرُونَ",
+          "translation": "They exalt [Him] night and day [and] do not slacken."
+        }
+      ]
+    },
+    {
+      "id": "prophets",
+      "name": "Previous Prophets",
+      "description": "Verses about earlier prophets and their messages.",
+      "ayahs": [
+        {
+          "surah": 2,
+          "ayah": 136,
+          "text": "قُولُوا آمَنَّا بِاللَّهِ وَمَا أُنزِلَ إِلَيْنَا وَمَا أُنزِلَ إِلَىٰ إِبْرَاهِيمَ",
+          "translation": "Say, 'We have believed in Allah and what has been revealed to us and what has been revealed to Abraham.'"
+        },
+        {
+          "surah": 6,
+          "ayah": 84,
+          "text": "وَوَهَبْنَا لَهُ إِسْحَاقَ وَيَعْقُوبَ ۚ كُلًّا هَدَيْنَا",
+          "translation": "And We gave to Abraham, Isaac and Jacob - all [of them] We guided."
+        },
+        {
+          "surah": 21,
+          "ayah": 25,
+          "text": "وَمَا أَرْسَلْنَا مِن قَبْلِكَ مِن رَّسُولٍ إِلَّا نُوحِي إِلَيْهِ أَنَّهُ لَا إِلَٰهَ إِلَّا أَنَا",
+          "translation": "And We sent not before you any messenger except that We revealed to him that, 'There is no deity except Me.'"
+        }
+      ]
+    },
+    {
+      "id": "quran",
+      "name": "Holy Quran",
+      "description": "Verses about the Quran itself, its guidance, and miraculous nature.",
+      "ayahs": [
+        {
+          "surah": 17,
+          "ayah": 88,
+          "text": "قُل لَّئِنِ اجْتَمَعَتِ الْإِنسُ وَالْجِنُّ عَلَىٰ أَن يَأْتُوا بِمِثْلِ هَٰذَا الْقُرْآنِ",
+          "translation": "Say, 'If mankind and the jinn gathered in order to produce the like of this Qur'an.'"
+        },
+        {
+          "surah": 15,
+          "ayah": 9,
+          "text": "إِنَّا نَحْنُ نَزَّلْنَا الذِّكْرَ وَإِنَّا لَهُ لَحَافِظُونَ",
+          "translation": "Indeed, it is We who sent down the Qur'an and indeed, We will be its guardian."
+        },
+        {
+          "surah": 41,
+          "ayah": 42,
+          "text": "لَّا يَأْتِيهِ الْبَاطِلُ مِن بَيْنِ يَدَيْهِ وَلَا مِنْ خَلْفِهِ",
+          "translation": "Falsehood cannot approach it from before it or from behind it."
+        }
+      ]
+    },
+    {
+      "id": "remembrance",
+      "name": "Remembrance of Allah (Dhikr)",
+      "description": "Verses about remembering Allah and the benefits of dhikr.",
+      "ayahs": [
+        {
+          "surah": 13,
+          "ayah": 28,
+          "text": "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+          "translation": "Unquestionably, by the remembrance of Allah hearts are assured."
+        },
+        {
+          "surah": 33,
+          "ayah": 41,
+          "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا اذْكُرُوا اللَّهَ ذِكْرًا كَثِيرًا",
+          "translation": "O you who have believed, remember Allah with much remembrance."
+        },
+        {
+          "surah": 2,
+          "ayah": 152,
+          "text": "فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ",
+          "translation": "So remember Me; I will remember you. And be grateful to Me and do not deny Me."
+        }
+      ]
+    },
+    {
+      "id": "gratitude",
+      "name": "Gratitude (Shukr)",
+      "description": "Verses about being grateful to Allah for His blessings.",
+      "ayahs": [
+        {
+          "surah": 14,
+          "ayah": 7,
+          "text": "وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+          "translation": "And [remember] when your Lord proclaimed, 'If you are grateful, I will certainly give you more.'"
+        },
+        {
+          "surah": 31,
+          "ayah": 12,
+          "text": "وَمَن يَشْكُرْ فَإِنَّمَا يَشْكُرُ لِنَفْسِهِ",
+          "translation": "And whoever is grateful - he is grateful for [the benefit of] himself."
+        },
+        {
+          "surah": 16,
+          "ayah": 78,
+          "text": "وَجَعَلَ لَكُمُ السَّمْعَ وَالْأَبْصَارَ وَالْأَفْئِدَةَ لَعَلَّكُمْ تَشْكُرُونَ",
+          "translation": "And made for you hearing and vision and hearts that perhaps you would be grateful."
+        }
+      ]
+    },
+    {
+      "id": "trust",
+      "name": "Trust in Allah (Tawakkul)",
+      "description": "Verses about relying on Allah and trusting in His plan.",
+      "ayahs": [
+        {
+          "surah": 3,
+          "ayah": 159,
+          "text": "فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى اللَّهِ",
+          "translation": "But when you have decided, then rely upon Allah."
+        },
+        {
+          "surah": 65,
+          "ayah": 3,
+          "text": "وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ",
+          "translation": "And whoever relies upon Allah - then He is sufficient for him."
+        },
+        {
+          "surah": 8,
+          "ayah": 61,
+          "text": "وَإِن جَنَحُوا لِلسَّلْمِ فَاجْنَحْ لَهَا وَتَوَكَّلْ عَلَى اللَّهِ",
+          "translation": "And if they incline to peace, then incline to it [also] and trust in Allah."
         }
       ]
     }

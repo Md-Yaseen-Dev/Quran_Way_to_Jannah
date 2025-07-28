@@ -290,34 +290,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
         )}
 
         {activeTab === 'topics' && (
-          <div className="space-y-6">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                Explore Quranic Topics
-              </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">
-                Discover verses organized by important Islamic themes
-              </p>
-              <Button
-                onClick={handleTopicsView}
-                className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-8 py-3 rounded-lg font-medium transition-all duration-200"
-              >
-                <BookOpen className="w-5 h-5 mr-2" />
-                Explore Topics
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-              {['Faith (Iman)', 'Prayer (Salah)', 'Charity (Zakat)', 'Patience (Sabr)', 'Forgiveness', 'Knowledge (Ilm)'].map((topic) => (
-                <Card key={topic} className="p-4 hover:shadow-md transition-shadow cursor-pointer" onClick={handleTopicsView}>
-                  <div className="text-center">
-                    <BookOpen className="w-8 h-8 text-emerald-600 mx-auto mb-2" />
-                    <h3 className="font-medium text-gray-900 dark:text-white">{topic}</h3>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </div>
+          <TopicsViewer onBack={() => setCurrentView('dashboard')} />
         )}
 
 

@@ -42,10 +42,11 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
   const [loading, setLoading] = useState(true);
   const [translations, setTranslations] = useState<{ [key: string]: string }>({});
   const [surahs, setSurahs] = useState<SurahData[]>([]);
+  const [translationFilter, setTranslationFilter] = useState<string>('all');
 
   useEffect(() => {
     loadData();
-  }, [preferences.language]);
+  }, [preferences.language, translationFilter]);
 
   const loadData = async () => {
     try {
@@ -61,8 +62,11 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
       const surahData = await surahResponse.json();
       setSurahs(surahData.surahs);
 
-      // Load translations based on language preference
-      const translationFile = getTranslationFile(preferences.language);
+      // Load translations based on language preference and translation filter
+      let translationFile = getTranslationFile(preferences.language);
+      if (translationFilter !== 'all' && translationFilter !== preferences.language) {
+        translationFile = getTranslationFile(translationFilter);
+      }
       const translationResponse = await fetch(`/data/translations/${translationFile}.json`);
       const translationData = await translationResponse.json();
       setTranslations(translationData);
@@ -85,6 +89,15 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
     }
   };
 
+  const availableTranslations = [
+    { code: 'all', name: 'All Languages' },
+    { code: 'en', name: 'English' },
+    { code: 'ur', name: 'Urdu' },
+    { code: 'roman-urdu', name: 'Roman Urdu' },
+    { code: 'hi', name: 'Hindi' },
+    { code: 'te', name: 'Telugu' }
+  ];
+
   const getSurahName = (surahNumber: number): string => {
     const surah = surahs.find(s => s.number === surahNumber);
     return surah ? surah.englishName : `Surah ${surahNumber}`;
@@ -99,10 +112,20 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
     return "Translation not available";
   };
 
-  const filteredTopics = topics.filter(topic =>
-    topic.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    topic.description.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredTopics = topics.filter(topic => {
+    const matchesSearch = topic.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         topic.description.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    if (translationFilter === 'all') {
+      return matchesSearch;
+    }
+    
+    // Check if ayahs have translations available for the selected language
+    return matchesSearch && topic.ayahs.some(ayah => {
+      const surahTranslations = translations[ayah.surah.toString()];
+      return surahTranslations && surahTranslations[ayah.ayah.toString()];
+    });
+  });
 
   if (loading) {
     return (
@@ -215,15 +238,28 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
             Explore verses from the Holy Quran organized by important Islamic themes and topics
           </p>
           
-          <div className="relative max-w-md mx-auto">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <Input
-              type="text"
-              placeholder="Search topics..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600"
-            />
+          <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Input
+                type="text"
+                placeholder="Search topics..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600"
+              />
+            </div>
+            <select
+              value={translationFilter}
+              onChange={(e) => setTranslationFilter(e.target.value)}
+              className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+            >
+              {availableTranslations.map(trans => (
+                <option key={trans.code} value={trans.code}>
+                  {trans.name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 

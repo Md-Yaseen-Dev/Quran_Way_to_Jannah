@@ -114,7 +114,11 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
 
   const filteredTopics = topics.filter(topic => {
     const matchesSearch = topic.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         topic.description.toLowerCase().includes(searchTerm.toLowerCase());
+                         topic.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         topic.ayahs.some(ayah => 
+                           ayah.text.includes(searchTerm) || 
+                           ayah.translation.toLowerCase().includes(searchTerm.toLowerCase())
+                         );
     
     if (translationFilter === 'all') {
       return matchesSearch;
@@ -226,6 +230,24 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
           <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
             Explore verses from the Holy Quran organized by important Islamic themes and topics
           </p>
+          <div className="mb-6 p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg max-w-2xl mx-auto">
+            <div className="flex justify-center items-center gap-6 text-sm">
+              <div className="text-center">
+                <div className="font-bold text-emerald-700 dark:text-emerald-300">{topics.length}</div>
+                <div className="text-emerald-600 dark:text-emerald-400">Topics</div>
+              </div>
+              <div className="text-center">
+                <div className="font-bold text-emerald-700 dark:text-emerald-300">
+                  {topics.reduce((total, topic) => total + topic.ayahs.length, 0)}
+                </div>
+                <div className="text-emerald-600 dark:text-emerald-400">Verses Covered</div>
+              </div>
+              <div className="text-center">
+                <div className="font-bold text-emerald-700 dark:text-emerald-300">{filteredTopics.length}</div>
+                <div className="text-emerald-600 dark:text-emerald-400">Showing</div>
+              </div>
+            </div>
+          </div>
           
           <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
             <div className="relative flex-1">

@@ -1,0 +1,12 @@
+{
+  "prayerTimes": [
+    { "name": "Fajr", "time": "05:00", "arabicName": "فجر", "description": "Dawn" },
+    { "name": "Dhuhr", "time": "12:30", "arabicName": "ظهر", "description": "Noon" },
+    { "name": "Asr", "time": "16:00", "arabicName": "عصر", "description": "Afternoon" },
+    { "name": "Maghrib", "time": "19:15", "arabicName": "مغرب", "description": "Sunset" },
+    { "name": "Isha", "time": "20:45", "arabicName": "عشاء", "description": "Night" }
+  ],
+  "location": "28.61, 77.23",
+  "date": "2025-07-26",
+  "hijriDate": "10 Muharram 1446"
+}

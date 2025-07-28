@@ -1,0 +1,99 @@
+{
+  "topics": [
+    {
+      "id": "jannah",
+      "name": "Jannah (Paradise)",
+      "description": "Verses about Paradise, its blessings, and the rewards for the righteous.",
+      "ayahs": [
+        {
+          "surah": 2,
+          "ayah": 25,
+          "text": "وَبَشِّرِ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ أَنَّ لَهُمْ جَنَّاتٍ تَجْرِي مِن تَحْتِهَا الْأَنْهَارُ",
+          "translation": "And give good tidings to those who believe and do righteous deeds that they will have gardens [in Paradise] beneath which rivers flow."
+        },
+        {
+          "surah": 3,
+          "ayah": 15,
+          "text": "قُلْ أَؤُنَبِّئُكُم بِخَيْرٍ مِّن ذَٰلِكُمْ ۚ لِلَّذِينَ اتَّقَوْا عِندَ رَبِّهِمْ جَنَّاتٌ تَجْرِي مِن تَحْتِهَا الْأَنْهَارُ",
+          "translation": "Say, 'Shall I inform you of [something] better than that? For those who feared Allah will be gardens in the presence of their Lord beneath which rivers flow.'"
+        }
+      ]
+    },
+    {
+      "id": "forgiveness",
+      "name": "Forgiveness",
+      "description": "Verses about Allah's mercy, forgiveness, and repentance.",
+      "ayahs": [
+        {
+          "surah": 2,
+          "ayah": 286,
+          "text": "رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا",
+          "translation": "Our Lord, do not impose blame upon us if we have forgotten or erred."
+        },
+        {
+          "surah": 3,
+          "ayah": 135,
+          "text": "وَالَّذِينَ إِذَا فَعَلُوا فَاحِشَةً أَوْ ظَلَمُوا أَنفُسَهُمْ ذَكَرُوا اللَّهَ فَاسْتَغْفَرُوا لِذُنُوبِهِمْ",
+          "translation": "And those who, when they commit an immorality or wrong themselves [by transgression], remember Allah and seek forgiveness for their sins."
+        }
+      ]
+    },
+    {
+      "id": "patience",
+      "name": "Patience",
+      "description": "Verses about patience, perseverance, and trusting in Allah's plan.",
+      "ayahs": [
+        {
+          "surah": 2,
+          "ayah": 153,
+          "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ",
+          "translation": "O you who have believed, seek help through patience and prayer."
+        },
+        {
+          "surah": 2,
+          "ayah": 155,
+          "text": "وَلَنَبْلُوَنَّكُم بِشَيْءٍ مِّنَ الْخَوْفِ وَالْجُوعِ وَنَقْصٍ مِّنَ الْأَمْوَالِ وَالْأَنفُسِ وَالثَّمَرَاتِ",
+          "translation": "And We will surely test you with something of fear and hunger and a loss of wealth and lives and fruits."
+        }
+      ]
+    },
+    {
+      "id": "prayer",
+      "name": "Prayer",
+      "description": "Verses about the importance of prayer and worship.",
+      "ayahs": [
+        {
+          "surah": 1,
+          "ayah": 5,
+          "text": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+          "translation": "It is You we worship and You we ask for help."
+        },
+        {
+          "surah": 2,
+          "ayah": 3,
+          "text": "الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ وَيُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنفِقُونَ",
+          "translation": "Who believe in the unseen, establish prayer, and spend out of what We have provided for them."
+        }
+      ]
+    },
+    {
+      "id": "charity",
+      "name": "Charity",
+      "description": "Verses about charity, helping others, and spending in the way of Allah.",
+      "ayahs": [
+        {
+          "surah": 2,
+          "ayah": 261,
+          "text": "مَّثَلُ الَّذِينَ يُنفِقُونَ أَمْوَالَهُمْ فِي سَبِيلِ اللَّهِ كَمَثَلِ حَبَّةٍ أَنبَتَتْ سَبْعَ سَنَابِلَ",
+          "translation": "The example of those who spend their wealth in the way of Allah is like a seed [of grain] which grows seven spikes."
+        },
+        {
+          "surah": 2,
+          "ayah": 267,
+          "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا أَنفِقُوا مِن طَيِّبَاتِ مَا كَسَبْتُمْ",
+          "translation": "O you who have believed, spend from the good things which you have earned."
+        }
+      ]
+    }
+  ]
+}

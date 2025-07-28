@@ -1,0 +1,326 @@
+/*
+ * QuranCompanion index.css
+ *
+ * This file uses Tailwind CSS with custom utilities and variables for Islamic themes and Arabic typography.
+ *
+ * NOTE: If you use custom class names (e.g., .arabic-verse, .islamic-green-500) dynamically in your app,
+ * make sure to safelist them in tailwind.config.js so they are not purged by Tailwind JIT.
+ *
+ * If you want to use your custom color names as Tailwind utilities (e.g., bg-islamic-green-500),
+ * you must extend the Tailwind theme in tailwind.config.js.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lateef:wght@400;700&family=Scheherazade:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%); 
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(147, 60%, 38%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+
+  /* Islamic theme colors */
+  --islamic-green-50: hsl(142, 100%, 97%);
+  --islamic-green-100: hsl(144, 100%, 94%);
+  --islamic-green-500: hsl(147, 60%, 38%);
+  --islamic-green-600: hsl(147, 68%, 32%);
+  --islamic-green-700: hsl(147, 75%, 27%);
+  --islamic-green-900: hsl(148, 100%, 14%);
+  --islamic-gold-500: hsl(38, 92%, 50%);
+  --islamic-gold-600: hsl(32, 95%, 44%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(147, 60%, 45%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    /* Removed default border */
+    border-color: var(--border);
+  }
+
+  body {
+    @apply antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+
+
+@layer utilities {
+  .font-arabic {
+    font-family: 'Amiri', serif;
+  }
+
+  /* Enhanced Arabic typography utilities */
+  .arabic-text {
+    font-family: 'Amiri', 'Lateef', 'Scheherazade', serif;
+    direction: rtl;
+    text-align: right;
+    line-height: 2;
+    letter-spacing: 0.02em;
+  }
+
+  .arabic-ayah {
+    font-family: 'Amiri', serif;
+    direction: rtl;
+    text-align: justify;
+    line-height: 2.8;
+    letter-spacing: 0.02em;
+    word-spacing: 0.3em;
+    font-feature-settings: "liga" 1, "dlig" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+  }
+
+  /* Enhanced word spacing for Arabic text */
+  .arabic-verse {
+    font-family: 'Amiri', serif;
+    direction: rtl;
+    text-align: justify;
+    line-height: 3.2;
+    letter-spacing: 0.03em;
+    word-spacing: 0.5em;
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 400;
+    color: inherit;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    hyphens: none;
+    font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "kern" 1, "mark" 1, "mkmk" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  @media (min-width: 768px) {
+    .arabic-verse {
+      font-size: 2.25rem; /* text-4xl */
+      line-height: 3.5;
+      word-spacing: 0.6em;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .arabic-verse {
+      font-size: 1.5rem; /* text-2xl */
+      line-height: 2.8;
+      word-spacing: 0.4em;
+    }
+  }
+
+  /* Prevent word overlapping and ensure proper spacing */
+  .arabic-word {
+    display: inline-block;
+    margin-left: 0.75rem;
+    margin-bottom: 0.5rem;
+    word-break: keep-all;
+    white-space: nowrap;
+    min-width: fit-content;
+  }
+
+
+  /* Custom scrollbar for Surah list */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-thumb-emerald-500::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thumb-emerald-500::-webkit-scrollbar-track {
+    background: rgb(229 231 235);
+  }
+
+  .dark .scrollbar-thumb-emerald-500::-webkit-scrollbar-track {
+    background: rgb(55 65 81);
+  }
+
+  .scrollbar-thumb-emerald-500::-webkit-scrollbar-thumb {
+    background: rgb(16 185 129);
+    border-radius: 3px;
+  }
+
+  .scrollbar-thumb-emerald-500::-webkit-scrollbar-thumb:hover {
+    background: rgb(5 150 105);
+  }
+
+  /* Prevent body scroll when mobile sidebar is open */
+  .overflow-hidden {
+    overflow: hidden;
+  }
+
+  /* Tajweed-style formatting */
+  .tajweed-text {
+    font-family: 'Amiri', serif;
+    direction: rtl;
+    text-align: justify;
+    line-height: 3.2;
+    letter-spacing: 0.03em;
+    word-spacing: 0.6em;
+    font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "kern" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Ensure proper RTL layout and spacing */
+  .rtl-content {
+    direction: rtl;
+    text-align: right;
+  }
+
+  .islamic-green-50 {
+    background-color: var(--islamic-green-50);
+  }
+
+  .islamic-green-100 {
+    background-color: var(--islamic-green-100);
+  }
+
+  .islamic-green-500 {
+    background-color: var(--islamic-green-500);
+  }
+
+  .islamic-green-600 {
+    background-color: var(--islamic-green-600);
+  }
+
+  .islamic-green-700 {
+    background-color: var(--islamic-green-700);
+  }
+
+  .islamic-green-900 {
+    background-color: var(--islamic-green-900);
+  }
+
+  .text-islamic-green-400 {
+    color: hsl(147, 60%, 45%);
+  }
+
+  .text-islamic-green-600 {
+    color: var(--islamic-green-600);
+  }
+
+  .text-islamic-green-700 {
+    color: var(--islamic-green-700);
+  }
+
+  .border-islamic-green-300 {
+    border-color: hsl(147, 50%, 60%);
+  }
+
+  .border-islamic-green-500 {
+    border-color: var(--islamic-green-500);
+  }
+
+  .border-islamic-green-600 {
+    border-color: hsl(147, 68%, 40%);
+  }
+
+  .bg-islamic-green-100 {
+    background-color: var(--islamic-green-100);
+  }
+
+  .bg-islamic-green-500 {
+    background-color: var(--islamic-green-500);
+  }
+
+  .bg-islamic-green-600 {
+    background-color: var(--islamic-green-600);
+  }
+
+  .bg-islamic-green-900 {
+    background-color: var(--islamic-green-900);
+  }
+
+  .hover\:bg-islamic-green-600:hover {
+    background-color: var(--islamic-green-600);
+  }
+
+  .dark .bg-islamic-green-900 {
+    background-color: hsl(148, 60%, 15%);
+  }
+
+  .dark .text-islamic-green-200 {
+    color: hsl(147, 50%, 75%);
+  }
+
+  .dark .text-islamic-green-300 {
+    color: hsl(147, 50%, 65%);
+  }
+
+  .dark .border-islamic-green-600 {
+    border-color: hsl(147, 68%, 40%);
+  }
+
+/* Arabic word hover effects */
+.arabic-word {
+  display: inline-block;
+  margin: 0 4px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.arabic-word:hover {
+  background-color: rgba(16, 185, 129, 0.1);
+  transform: scale(1.05);
+}
+
+/* Arabic verse styling for Juz viewer */
+.arabic-verse {
+  font-size: 1.5rem;
+  line-height: 2.5;
+  text-align: right;
+  direction: rtl;
+}
+}

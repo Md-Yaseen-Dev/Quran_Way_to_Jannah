@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Search, BookOpen, Heart, Copy, Share } from 'lucide-react';
 import { Button } from './ui/button';
@@ -45,6 +44,7 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
   const [translationFilter, setTranslationFilter] = useState<string>('all');
   const [arabicText, setArabicText] = useState<{ [key: string]: Array<{ number: number; arabic: string }> }>({});
   const [favoriteAyahs, setFavoriteAyahs] = useState<Set<string>>(new Set());
+  const [showFavorites, setShowFavorites] = useState(false);
 
   useEffect(() => {
     loadData();
@@ -66,7 +66,7 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
   const loadData = async () => {
     try {
       setLoading(true);
-      
+
       // Load topics
       const topicsResponse = await fetch('/data/topics.json');
       const topicsData: TopicsData = await topicsResponse.json();
@@ -146,13 +146,13 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
   const toggleFavoriteAyah = (surahNumber: number, ayahNumber: number) => {
     const ayahKey = `${surahNumber}:${ayahNumber}`;
     const newFavorites = new Set(favoriteAyahs);
-    
+
     if (newFavorites.has(ayahKey)) {
       newFavorites.delete(ayahKey);
     } else {
       newFavorites.add(ayahKey);
     }
-    
+
     setFavoriteAyahs(newFavorites);
     localStorage.setItem('quran-favorite-ayahs', JSON.stringify(Array.from(newFavorites)));
   };
@@ -161,9 +161,9 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
     const arabicText = getCompleteArabicText(surahNumber, ayahNumber);
     const translation = getTranslation(surahNumber, ayahNumber);
     const surahName = getSurahName(surahNumber);
-    
+
     const text = `${arabicText}\n\n${translation}\n\n- ${surahName} ${surahNumber}:${ayahNumber}`;
-    
+
     navigator.clipboard.writeText(text).then(() => {
       // You could add a toast notification here if you have a toast system
       console.log('Ayah copied to clipboard');
@@ -176,9 +176,9 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
     const arabicText = getCompleteArabicText(surahNumber, ayahNumber);
     const translation = getTranslation(surahNumber, ayahNumber);
     const surahName = getSurahName(surahNumber);
-    
+
     const shareText = `${arabicText}\n\n${translation}\n\n- ${surahName} ${surahNumber}:${ayahNumber}`;
-    
+
     if (navigator.share) {
       navigator.share({
         title: `Quran ${surahNumber}:${ayahNumber}`,
@@ -203,11 +203,11 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
                            ayah.text.includes(searchTerm) || 
                            ayah.translation.toLowerCase().includes(searchTerm.toLowerCase())
                          );
-    
+
     if (translationFilter === 'all') {
       return matchesSearch;
     }
-    
+
     // Check if ayahs have translations available for the selected language
     return matchesSearch && topic.ayahs.some(ayah => {
       const surahTranslations = translations[ayah.surah.toString()];
@@ -235,7 +235,7 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-gray-900 dark:to-gray-800 p-6">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="flex items-center gap-4 mb-8">
+          <div className="flex items-center justify-between mb-8">
             <Button
               onClick={() => setSelectedTopic(null)}
               variant="ghost"
@@ -244,6 +244,15 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Topics
+            </Button>
+            <Button
+              onClick={() => setShowFavorites(true)}
+              variant="ghost"
+              size="sm"
+              className="text-red-500 hover:text-red-600 dark:text-red-400"
+            >
+              <Heart className="w-5 h-5 mr-2 fill-current" />
+              Favorites ({favoriteAyahs.size})
             </Button>
           </div>
 
@@ -352,6 +361,108 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
     );
   }
 
+  if (showFavorites) {
+    const favoriteAyahsArray = Array.from(favoriteAyahs);
+
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-gray-900 dark:to-gray-800 p-6">
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-8">
+            <Button
+              onClick={() => setShowFavorites(false)}
+              variant="ghost"
+              size="sm"
+              className="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Topics
+            </Button>
+          </div>
+          
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Favorite Ayahs</h2>
+
+          {favoriteAyahsArray.length === 0 ? (
+            <p className="text-gray-600 dark:text-gray-400">No favorite ayahs added yet.</p>
+          ) : (
+            <div className="space-y-6">
+              {favoriteAyahsArray.map(ayahKey => {
+                const [surahNumber, ayahNumber] = ayahKey.split(':').map(Number);
+                return (
+                  <Card key={ayahKey} className="border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+                    <CardContent className="p-6">
+                      {/* Surah and Ayah reference */}
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-2">
+                          <span className="bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 px-3 py-1 rounded-full text-sm font-medium">
+                            {getSurahName(surahNumber)} - Verse {ayahNumber}
+                          </span>
+                        </div>
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="text-red-500 hover:text-red-600 transition-colors duration-200"
+                          onClick={() => toggleFavoriteAyah(surahNumber, ayahNumber)}
+                        >
+                          <Heart className="w-4 h-4 fill-current" />
+                        </Button>
+                      </div>
+
+                      {/* Arabic Text */}
+                      <div className="mb-6 p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-xl border border-gray-200 dark:border-gray-600" dir="rtl">
+                        <div className="text-2xl leading-loose text-gray-900 dark:text-white font-arabic">
+                          {getCompleteArabicText(surahNumber, ayahNumber)}
+                          <span className="inline-flex items-center justify-center w-8 h-8 mr-4 ml-2 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white rounded-full text-sm font-bold shadow-lg">
+                            {ayahNumber}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Translation */}
+                      <div className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg mb-4">
+                        {getTranslation(surahNumber, ayahNumber)}
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex items-center justify-between text-sm border-t border-gray-200 dark:border-gray-600 pt-4">
+                        <div className="text-emerald-600 dark:text-emerald-400 font-medium">
+                          {getSurahName(surahNumber)} {surahNumber}:{ayahNumber}
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <button
+                            onClick={() => handleCopyAyah(surahNumber, ayahNumber)}
+                            className="text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 p-1"
+                            title="Copy Ayah"
+                          >
+                            <Copy className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => handleShareAyah(surahNumber, ayahNumber)}
+                            className="text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 p-1"
+                            title="Share Ayah"
+                          >
+                            <Share className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => toggleFavoriteAyah(surahNumber, ayahNumber)}
+                            className="text-red-500 hover:text-red-600 transition-colors duration-200 p-1"
+                            title="Remove from favorites"
+                          >
+                            <Heart className="w-4 h-4 fill-current" />
+                          </button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-gray-900 dark:to-gray-800 p-6">
       <div className="max-w-6xl mx-auto">
@@ -377,10 +488,10 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
                 </div>
                 <div className="text-emerald-600 dark:text-emerald-400">Verses Covered</div>
               </div>
-              
+
             </div>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />

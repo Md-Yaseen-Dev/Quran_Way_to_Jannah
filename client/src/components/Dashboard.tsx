@@ -4,10 +4,12 @@ import { SurahCard } from './SurahCard';
 import { JuzCard } from './JuzCard';
 import { TabNavigation } from './TabNavigation';
 import { TabType } from '@/types';
-import { Settings, Church, BookOpen } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Settings, Church, BookOpen, Heart } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Button } from './ui/button';
+import { TopicsViewer } from './TopicsViewer';
+import { FavoritesViewer } from './FavoritesViewer';
 
 interface Juz {
   number: number;
@@ -41,8 +43,23 @@ export function Dashboard({ onNavigate }: DashboardProps) {
   const [juzError, setJuzError] = useState<string | null>(null);
 
   console.log(filteredSurahs);
-  
+
   const [activeTab, setActiveTab] = useState<TabType>('surah');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'surah' | 'juz' | 'topics' | 'settings' | 'favorites'>('dashboard');
+  const [favoriteAyahs, setFavoriteAyahs] = useState<Set<string>>(new Set());
+
+  // Load favorite ayahs from localStorage
+  useEffect(() => {
+    const savedFavorites = localStorage.getItem('quran-favorite-ayahs');
+    if (savedFavorites) {
+      try {
+        const favorites = JSON.parse(savedFavorites);
+        setFavoriteAyahs(new Set(favorites));
+      } catch (error) {
+        console.error('Error loading favorite ayahs:', error);
+      }
+    }
+  }, []);
 
   // Load Juz data
   useEffect(() => {
@@ -81,6 +98,10 @@ export function Dashboard({ onNavigate }: DashboardProps) {
     setSelectedTopic(topic === 'all' ? null : topic);
   };
 
+  const handleTopicsView = () => {
+    setCurrentView('topics');
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -103,6 +124,24 @@ export function Dashboard({ onNavigate }: DashboardProps) {
     );
   }
 
+  if (currentView === 'settings') {
+    return <Settings />;
+  }
+
+  if (currentView === 'topics') {
+    return <TopicsViewer onBack={() => setCurrentView('dashboard')} />;
+  }
+
+  if (currentView === 'favorites') {
+    return (
+      <FavoritesViewer 
+        onBack={() => setCurrentView('dashboard')}
+        favoriteAyahs={favoriteAyahs}
+        setFavoriteAyahs={setFavoriteAyahs}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -115,6 +154,19 @@ export function Dashboard({ onNavigate }: DashboardProps) {
               </h1>
             </div>
             <div className="flex items-center gap-4">
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={() => setCurrentView('favorites')}
+                className="p-2 text-gray-600 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 relative"
+              >
+                <Heart className="w-5 h-5" />
+                {favoriteAyahs.size > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {favoriteAyahs.size}
+                  </span>
+                )}
+              </Button>
               <Button 
                 variant="ghost" 
                 size="sm"
@@ -167,8 +219,9 @@ export function Dashboard({ onNavigate }: DashboardProps) {
         )}
 
         {/* Filters */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-          {/* Translation Filter */}
+        
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+        
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Translation
@@ -186,7 +239,6 @@ export function Dashboard({ onNavigate }: DashboardProps) {
             </Select>
           </div>
 
-          {/* Topic Filter */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Filter by Topic
@@ -206,7 +258,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
             </Select>
           </div>
         </div>
-
+ */}
         {/* Tab Navigation */}
         <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
 
@@ -223,7 +275,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                 </p>
               </div>
             )}
-            
+
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {filteredSurahs.map((surah) => (
                 <SurahCard 
@@ -260,7 +312,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                     The Quran is divided into 30 sections called Paras or Juz, each containing multiple Surahs or parts of Surahs.
                   </p>
                 </div>
-                
+
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {juzList.map((juz) => (
                     <JuzCard 
@@ -276,46 +328,11 @@ export function Dashboard({ onNavigate }: DashboardProps) {
         )}
 
         {activeTab === 'topics' && (
-          <>
-            {juzLoading ? (
-              <div className="flex items-center justify-center py-12">
-                <div className="text-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
-                  <p className="text-gray-600 dark:text-gray-400">Loading Paras...</p>
-                </div>
-              </div>
-            ) : juzError ? (
-              <div className="text-center py-12">
-                <p className="text-red-600 dark:text-red-400 mb-4">Error: {juzError}</p>
-                <p className="text-gray-600 dark:text-gray-400">Please check your internet connection and try again.</p>
-              </div>
-            ) : (
-              <>
-                <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-                  <h3 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
-                    Quran Paras (Juz)
-                  </h3>
-                  <p className="text-sm text-blue-700 dark:text-blue-300">
-                    The Quran is divided into 30 sections called Paras or Juz, each containing multiple Surahs or parts of Surahs.
-                  </p>
-                </div>
-
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  {juzList.map((juz) => (
-                    <JuzCard 
-                      key={juz.number} 
-                      juz={juz} 
-                      onClick={() => handleJuzClick(juz)}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-          </>
+          <TopicsViewer onBack={() => setCurrentView('dashboard')} />
         )}
-        
 
-        {activeTab !== 'surah' && activeTab !== 'para' && (
+
+        {activeTab !== 'surah' && activeTab !== 'para' && activeTab !== 'topics' && (
           <div className="text-center py-12">
             <div className="text-gray-400 dark:text-gray-600 mb-4">
               <BookOpen className="w-16 h-16 mx-auto mb-4" />

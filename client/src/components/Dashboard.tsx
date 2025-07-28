@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { TopicsViewer } from './TopicsViewer';
+import { FavoritesViewer } from './FavoritesViewer';
 
 interface Juz {
   number: number;
@@ -44,7 +45,21 @@ export function Dashboard({ onNavigate }: DashboardProps) {
   console.log(filteredSurahs);
 
   const [activeTab, setActiveTab] = useState<TabType>('surah');
-  const [currentView, setCurrentView] = useState<'dashboard' | 'surah' | 'juz' | 'topics' | 'settings'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'surah' | 'juz' | 'topics' | 'settings' | 'favorites'>('dashboard');
+  const [favoriteAyahs, setFavoriteAyahs] = useState<Set<string>>(new Set());
+
+  // Load favorite ayahs from localStorage
+  useEffect(() => {
+    const savedFavorites = localStorage.getItem('quran-favorite-ayahs');
+    if (savedFavorites) {
+      try {
+        const favorites = JSON.parse(savedFavorites);
+        setFavoriteAyahs(new Set(favorites));
+      } catch (error) {
+        console.error('Error loading favorite ayahs:', error);
+      }
+    }
+  }, []);
 
   // Load Juz data
   useEffect(() => {
@@ -117,6 +132,16 @@ export function Dashboard({ onNavigate }: DashboardProps) {
     return <TopicsViewer onBack={() => setCurrentView('dashboard')} />;
   }
 
+  if (currentView === 'favorites') {
+    return (
+      <FavoritesViewer 
+        onBack={() => setCurrentView('dashboard')}
+        favoriteAyahs={favoriteAyahs}
+        setFavoriteAyahs={setFavoriteAyahs}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -129,6 +154,19 @@ export function Dashboard({ onNavigate }: DashboardProps) {
               </h1>
             </div>
             <div className="flex items-center gap-4">
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={() => setCurrentView('favorites')}
+                className="p-2 text-gray-600 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 relative"
+              >
+                <Heart className="w-5 h-5" />
+                {favoriteAyahs.size > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {favoriteAyahs.size}
+                  </span>
+                )}
+              </Button>
               <Button 
                 variant="ghost" 
                 size="sm"

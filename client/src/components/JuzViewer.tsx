@@ -36,6 +36,7 @@ export function JuzViewer({ juzNumber, onBack }: JuzViewerProps) {
   const [translations, setTranslations] = useState<{ [key: string]: string }>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [favoriteAyahs, setFavoriteAyahs] = useState<Set<string>>(new Set());
 
   const languageLabels = {
     en: 'ENGLISH - SAHIH INTERNATIONAL',
@@ -43,6 +44,19 @@ export function JuzViewer({ juzNumber, onBack }: JuzViewerProps) {
     'roman-urdu': 'ROMAN URDU - MAUDUDI',
     hi: 'HINDI - MAUDUDI'
   };
+
+  // Load favorite ayahs from localStorage
+  useEffect(() => {
+    const savedFavorites = localStorage.getItem('quran-favorite-ayahs');
+    if (savedFavorites) {
+      try {
+        const favorites = JSON.parse(savedFavorites);
+        setFavoriteAyahs(new Set(favorites));
+      } catch (error) {
+        console.error('Error loading favorite ayahs:', error);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     const loadJuzData = async () => {
@@ -142,6 +156,20 @@ export function JuzViewer({ juzNumber, onBack }: JuzViewerProps) {
         text: `${ayah.arabic}\n\n${translation}`,
       });
     }
+  };
+
+  const toggleFavoriteAyah = (surahNumber: number, ayahNumber: number) => {
+    const ayahKey = `${surahNumber}:${ayahNumber}`;
+    const newFavorites = new Set(favoriteAyahs);
+
+    if (newFavorites.has(ayahKey)) {
+      newFavorites.delete(ayahKey);
+    } else {
+      newFavorites.add(ayahKey);
+    }
+
+    setFavoriteAyahs(newFavorites);
+    localStorage.setItem('quran-favorite-ayahs', JSON.stringify(Array.from(newFavorites)));
   };
 
   if (loading) {
@@ -313,8 +341,19 @@ export function JuzViewer({ juzNumber, onBack }: JuzViewerProps) {
                           >
                             <Share className="w-4 h-4" />
                           </button>
-                          <button className="text-gray-400 hover:text-red-500 transition-colors">
-                            <Heart className="w-4 h-4" />
+                          <button 
+                            onClick={() => toggleFavoriteAyah(ayah.surahNumber, ayah.number)}
+                            className={`${
+                              favoriteAyahs.has(`${ayah.surahNumber}:${ayah.number}`)
+                                ? 'text-red-500 hover:text-red-600'
+                                : 'text-gray-400 hover:text-red-500'
+                            } transition-colors`}
+                          >
+                            <Heart 
+                              className={`w-4 h-4 ${
+                                favoriteAyahs.has(`${ayah.surahNumber}:${ayah.number}`) ? 'fill-current' : ''
+                              }`} 
+                            />
                           </button>
                         </div>
                       </div>

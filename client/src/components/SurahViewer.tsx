@@ -29,6 +29,7 @@ export function SurahViewer({ surahId, onBack, onNavigateToSurah, scrollToAyah }
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const [favoriteAyahs, setFavoriteAyahs] = useState<Set<string>>(new Set());
 
   // Prevent body scroll when mobile sidebar is open
   useEffect(() => {
@@ -45,6 +46,19 @@ export function SurahViewer({ surahId, onBack, onNavigateToSurah, scrollToAyah }
   }, [isMobileSidebarOpen]);
 
   const currentSurah = surahs.find(s => s.number === surahId);
+
+  // Load favorite ayahs from localStorage
+  useEffect(() => {
+    const savedFavorites = localStorage.getItem('quran-favorite-ayahs');
+    if (savedFavorites) {
+      try {
+        const favorites = JSON.parse(savedFavorites);
+        setFavoriteAyahs(new Set(favorites));
+      } catch (error) {
+        console.error('Error loading favorite ayahs:', error);
+      }
+    }
+  }, []);
 
   const languageLabels = {
     en: 'ENGLISH - SAHIH INTERNATIONAL',
@@ -181,6 +195,20 @@ export function SurahViewer({ surahId, onBack, onNavigateToSurah, scrollToAyah }
         text: `${ayah.arabic}\n\n${translation}`,
       });
     }
+  };
+
+  const toggleFavoriteAyah = (ayahNumber: number) => {
+    const ayahKey = `${surahId}:${ayahNumber}`;
+    const newFavorites = new Set(favoriteAyahs);
+
+    if (newFavorites.has(ayahKey)) {
+      newFavorites.delete(ayahKey);
+    } else {
+      newFavorites.add(ayahKey);
+    }
+
+    setFavoriteAyahs(newFavorites);
+    localStorage.setItem('quran-favorite-ayahs', JSON.stringify(Array.from(newFavorites)));
   };
 
   if (loading) {
@@ -539,8 +567,19 @@ export function SurahViewer({ surahId, onBack, onNavigateToSurah, scrollToAyah }
                           >
                             <Share className="w-4 h-4" />
                           </button>
-                          <button className="text-gray-400 hover:text-red-500 transition-colors">
-                            <Heart className="w-4 h-4" />
+                          <button 
+                            onClick={() => toggleFavoriteAyah(ayah.number)}
+                            className={`${
+                              favoriteAyahs.has(`${surahId}:${ayah.number}`)
+                                ? 'text-red-500 hover:text-red-600'
+                                : 'text-gray-400 hover:text-red-500'
+                            } transition-colors`}
+                          >
+                            <Heart 
+                              className={`w-4 h-4 ${
+                                favoriteAyahs.has(`${surahId}:${ayah.number}`) ? 'fill-current' : ''
+                              }`} 
+                            />
                           </button>
                         </div>
                       </div>

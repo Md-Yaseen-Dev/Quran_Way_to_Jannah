@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Search, BookOpen, Heart } from 'lucide-react';
+import { ArrowLeft, Search, BookOpen, Heart, Copy, Share } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Input } from './ui/input';
@@ -44,10 +44,24 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
   const [surahs, setSurahs] = useState<SurahData[]>([]);
   const [translationFilter, setTranslationFilter] = useState<string>('all');
   const [arabicText, setArabicText] = useState<{ [key: string]: Array<{ number: number; arabic: string }> }>({});
+  const [favoriteAyahs, setFavoriteAyahs] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     loadData();
   }, [preferences.language, translationFilter]);
+
+  // Load favorite ayahs from localStorage
+  useEffect(() => {
+    const savedFavorites = localStorage.getItem('quran-favorite-ayahs');
+    if (savedFavorites) {
+      try {
+        const favorites = JSON.parse(savedFavorites);
+        setFavoriteAyahs(new Set(favorites));
+      } catch (error) {
+        console.error('Error loading favorite ayahs:', error);
+      }
+    }
+  }, []);
 
   const loadData = async () => {
     try {
@@ -129,6 +143,59 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
     return "Arabic text not available";
   };
 
+  const toggleFavoriteAyah = (surahNumber: number, ayahNumber: number) => {
+    const ayahKey = `${surahNumber}:${ayahNumber}`;
+    const newFavorites = new Set(favoriteAyahs);
+    
+    if (newFavorites.has(ayahKey)) {
+      newFavorites.delete(ayahKey);
+    } else {
+      newFavorites.add(ayahKey);
+    }
+    
+    setFavoriteAyahs(newFavorites);
+    localStorage.setItem('quran-favorite-ayahs', JSON.stringify(Array.from(newFavorites)));
+  };
+
+  const handleCopyAyah = (surahNumber: number, ayahNumber: number) => {
+    const arabicText = getCompleteArabicText(surahNumber, ayahNumber);
+    const translation = getTranslation(surahNumber, ayahNumber);
+    const surahName = getSurahName(surahNumber);
+    
+    const text = `${arabicText}\n\n${translation}\n\n- ${surahName} ${surahNumber}:${ayahNumber}`;
+    
+    navigator.clipboard.writeText(text).then(() => {
+      // You could add a toast notification here if you have a toast system
+      console.log('Ayah copied to clipboard');
+    }).catch(err => {
+      console.error('Failed to copy ayah:', err);
+    });
+  };
+
+  const handleShareAyah = (surahNumber: number, ayahNumber: number) => {
+    const arabicText = getCompleteArabicText(surahNumber, ayahNumber);
+    const translation = getTranslation(surahNumber, ayahNumber);
+    const surahName = getSurahName(surahNumber);
+    
+    const shareText = `${arabicText}\n\n${translation}\n\n- ${surahName} ${surahNumber}:${ayahNumber}`;
+    
+    if (navigator.share) {
+      navigator.share({
+        title: `Quran ${surahNumber}:${ayahNumber}`,
+        text: shareText,
+      }).catch(err => {
+        console.error('Error sharing:', err);
+      });
+    } else {
+      // Fallback: copy to clipboard if Web Share API is not available
+      navigator.clipboard.writeText(shareText).then(() => {
+        alert('Ayah copied to clipboard (sharing not supported on this device)');
+      }).catch(err => {
+        console.error('Failed to copy ayah:', err);
+      });
+    }
+  };
+
   const filteredTopics = topics.filter(topic => {
     const matchesSearch = topic.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          topic.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -206,8 +273,21 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
                         {getSurahName(ayah.surah)} - Verse {ayah.ayah}
                       </span>
                     </div>
-                    <Button variant="ghost" size="sm" className="text-gray-500 hover:text-red-500">
-                      <Heart className="w-4 h-4" />
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className={`${
+                        favoriteAyahs.has(`${ayah.surah}:${ayah.ayah}`)
+                          ? 'text-red-500 hover:text-red-600'
+                          : 'text-gray-500 hover:text-red-500'
+                      } transition-colors duration-200`}
+                      onClick={() => toggleFavoriteAyah(ayah.surah, ayah.ayah)}
+                    >
+                      <Heart 
+                        className={`w-4 h-4 ${
+                          favoriteAyahs.has(`${ayah.surah}:${ayah.ayah}`) ? 'fill-current' : ''
+                        }`} 
+                      />
                     </Button>
                   </div>
 
@@ -222,8 +302,46 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
                   </div>
 
                   {/* Translation */}
-                  <div className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
+                  <div className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg mb-4">
                     {getTranslation(ayah.surah, ayah.ayah)}
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex items-center justify-between text-sm border-t border-gray-200 dark:border-gray-600 pt-4">
+                    <div className="text-emerald-600 dark:text-emerald-400 font-medium">
+                      {getSurahName(ayah.surah)} {ayah.surah}:{ayah.ayah}
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <button
+                        onClick={() => handleCopyAyah(ayah.surah, ayah.ayah)}
+                        className="text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 p-1"
+                        title="Copy Ayah"
+                      >
+                        <Copy className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => handleShareAyah(ayah.surah, ayah.ayah)}
+                        className="text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 p-1"
+                        title="Share Ayah"
+                      >
+                        <Share className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => toggleFavoriteAyah(ayah.surah, ayah.ayah)}
+                        className={`${
+                          favoriteAyahs.has(`${ayah.surah}:${ayah.ayah}`)
+                            ? 'text-red-500 hover:text-red-600'
+                            : 'text-gray-400 hover:text-red-500'
+                        } transition-colors duration-200 p-1`}
+                        title={favoriteAyahs.has(`${ayah.surah}:${ayah.ayah}`) ? "Remove from favorites" : "Add to favorites"}
+                      >
+                        <Heart 
+                          className={`w-4 h-4 ${
+                            favoriteAyahs.has(`${ayah.surah}:${ayah.ayah}`) ? 'fill-current' : ''
+                          }`} 
+                        />
+                      </button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>

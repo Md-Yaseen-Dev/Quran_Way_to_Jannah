@@ -219,8 +219,9 @@ export function Dashboard({ onNavigate }: DashboardProps) {
         )}
 
         {/* Filters */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-          {/* Translation Filter */}
+        
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+        
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Translation
@@ -238,7 +239,6 @@ export function Dashboard({ onNavigate }: DashboardProps) {
             </Select>
           </div>
 
-          {/* Topic Filter */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Filter by Topic
@@ -258,7 +258,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
             </Select>
           </div>
         </div>
-
+ */}
         {/* Tab Navigation */}
         <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
 

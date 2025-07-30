@@ -232,7 +232,7 @@ export function TopicsViewer({ onBack }: TopicsViewerProps) {
 
   if (selectedTopic) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-gray-900 dark:to-gray-800 p-6">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-gray-900 dark:to-gray-800 ">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
